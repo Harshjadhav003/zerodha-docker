@@ -1,34 +1,24 @@
 services:
   backend:
-    build:
-      context: ../backend
+    image: harshjadhav003/docker-setup-backend:latest
     ports:
       - "3002:3002"
     env_file:
       - ../backend/.env
-    volumes:
-      - ../backend:/app
-      - /app/node_modules
     restart: always
 
   frontend:
-    build:
-      context: ../frontend
+    image: harshjadhav003/docker-setup-frontend:latest
     ports:
       - "5173:5173"
-    volumes:
-      - ../frontend:/app
-      - /app/node_modules
     depends_on:
       - backend
+    restart: always
 
   dashboard:
-    build:
-      context: ../dashboard
+    image: harshjadhav003/docker-setup-dashboard:latest
     ports:
       - "5174:5173"
-    volumes:
-      - ../dashboard:/app
-      - /app/node_modules
     depends_on:
       - backend
+    restart: always
