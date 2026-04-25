@@ -1,10 +1,14 @@
+version: "3.8"
+
 services:
   backend:
     image: harshjadhav003/docker-setup-backend:latest
     ports:
       - "3002:3002"
     env_file:
-      - ../backend/.env
+      - ../backend/.env.docker
+    depends_on:
+      - redis
     restart: always
 
   frontend:
@@ -21,4 +25,10 @@ services:
       - "5174:5173"
     depends_on:
       - backend
+    restart: always
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
     restart: always
