@@ -5,26 +5,18 @@ services:
     image: harshjadhav003/docker-setup-backend:latest
     ports:
       - "3002:3002"
-    env_file:
-      - ../backend/.env.docker
-    depends_on:
-      - redis
     restart: always
 
   frontend:
     image: harshjadhav003/docker-setup-frontend:latest
     ports:
-      - "5173:5173"
-    depends_on:
-      - backend
+      - "5173:80"
     restart: always
 
   dashboard:
     image: harshjadhav003/docker-setup-dashboard:latest
     ports:
-      - "5174:5173"
-    depends_on:
-      - backend
+      - "5174:80"
     restart: always
 
   redis:
